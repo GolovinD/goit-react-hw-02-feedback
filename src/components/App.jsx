@@ -11,18 +11,22 @@ class App extends React.Component {
     good: 0,
     neutral: 0,
     bad: 0,
-    total: 0
+
   }
 
 handleIncrement = option => {
     this.setState(prevState => ({
       [option]: prevState[option] + 1,
-      total: prevState.total +1,
     }));
   };
+
+  countTotalFeedback() {
+    const { good, neutral, bad } = this.state;
+    return good + neutral + bad;
+  }  
   
 countPositiveFeedbackPercentage = () => {
-  return Math.round((this.state.good / this.state.total) * 100)
+  return Math.round((this.state.good / this.countTotalFeedback()) * 100)
    
 };
 
@@ -36,12 +40,12 @@ countPositiveFeedbackPercentage = () => {
         />
         </Section>
         <Section title="Statistics">
-          {this.state.total > 0 ? (
+          {this.countTotalFeedback() > 0 ? (
         <Statistics
           good={this.state.good}
           neutral={this.state.neutral}
           bad={this.state.bad}
-          total={this.state.total}
+          total={this.countTotalFeedback()}
           positiveFeedback={this.countPositiveFeedbackPercentage()}
           />
             ) : (
