@@ -11,7 +11,6 @@ class App extends React.Component {
     good: 0,
     neutral: 0,
     bad: 0,
-
   }
 
 handleIncrement = option => {
