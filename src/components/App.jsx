@@ -30,11 +30,14 @@ countPositiveFeedbackPercentage = () => {
 };
 
   render() {
+    const options = Object.keys(this.state);
+    
+
     return (
       <div>
         <Section title="Please leave feedback">
         <FeedbackOptions
-          // options={ }
+          options={options}
           onLeaveFeedback={this.handleIncrement}
         />
         </Section>
